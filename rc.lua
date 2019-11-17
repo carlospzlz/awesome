@@ -280,10 +280,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
+--  awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+--            {description = "increase master width factor", group = "layout"}),
+--  awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+--            {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
@@ -329,18 +329,24 @@ globalkeys = gears.table.join(
 
     -- Custom key bindings
     awful.key({ modkey,           }, "h",   awful.tag.viewprev,
-              {description = "view previous", group = "tag"}),
+              {description = "view previous tag", group = "custom"}),
     awful.key({ modkey,           }, "l",  awful.tag.viewnext,
-              {description = "view next", group = "tag"}),
+              {description = "view next tag", group = "custom"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incmwfact( 0.05)          end,
-              {description = "increase master width factor", group = "layout"}),
+              {description = "increase master width factor", group = "custom"}),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incmwfact(-0.05)          end,
-              {description = "decrease master width factor", group = "layout"}),
-    awful.key({ modkey }, "i",    function() awful.util.spawn("amixer set Master 9%+", false) end),
-    awful.key({ modkey }, "Up",   function() awful.util.spawn("amixer set Master 9%+", false) end),
-    awful.key({ modkey }, "u",    function() awful.util.spawn("amixer set Master 9%-", false) end),
-    awful.key({ modkey }, "Down", function() awful.util.spawn("amixer set Master 9%-", false) end),
-    awful.key({ modkey }, "[", function() awful.util.spawn("amixer -D pulse set Master toggle", false) end)
+              {description = "decrease master width factor", group = "custom"}),
+
+    awful.key({ modkey }, "i",    function() awful.util.spawn("amixer -D hw:1 set Master 9%+", false) end,
+              {description = "increase hw:1 control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "Up",   function() awful.util.spawn("amixer -D hw:1 set Master 9%+", false) end,
+              {description = "increase hw:1 control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "u",    function() awful.util.spawn("amixer -D hw:1 set Master 9%-", false) end,
+              {description = "decrease hw:1 constrol Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "Down", function() awful.util.spawn("amixer -D hw:1 set Master 9%-", false) end,
+              {description = "decrease hw:1 control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "[", function() awful.util.spawn("amixer -D hw:1 set Master toggle", false) end,
+              {description = "mute hw:1 control Master", group = "custom"})
 )
 
 clientkeys = gears.table.join(
