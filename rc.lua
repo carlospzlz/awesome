@@ -337,16 +337,19 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "custom"}),
 
-    awful.key({ modkey }, "i",    function() awful.util.spawn("amixer -D hw:1 set Master 9%+", false) end,
-              {description = "increase hw:1 control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "Up",   function() awful.util.spawn("amixer -D hw:1 set Master 9%+", false) end,
-              {description = "increase hw:1 control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "u",    function() awful.util.spawn("amixer -D hw:1 set Master 9%-", false) end,
-              {description = "decrease hw:1 constrol Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "Down", function() awful.util.spawn("amixer -D hw:1 set Master 9%-", false) end,
-              {description = "decrease hw:1 control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "[", function() awful.util.spawn("amixer -D hw:1 set Master toggle", false) end,
-              {description = "mute hw:1 control Master", group = "custom"})
+    awful.key({ modkey }, "i",    function() awful.util.spawn("amixer -D hw:Generic set Master 9%+", false) end,
+              {description = "increase hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "Up",   function() awful.util.spawn("amixer -D hw:Generic set Master 9%+", false) end,
+              {description = "increase hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "u",    function() awful.util.spawn("amixer -D hw:Generic set Master 9%-", false) end,
+              {description = "decrease hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "Down", function() awful.util.spawn("amixer -D hw:Generic set Master 9%-", false) end,
+              {description = "decrease hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "[", function() awful.util.spawn("amixer -D hw:Generic set Master toggle", false) end,
+              {description = "mute hw:Generic control Master", group = "custom"}),
+    -- Due to a bug 'toggle' doesn't unmute all the paramters, we need to restore.
+    awful.key({ modkey }, "]", function() awful.util.spawn("alsactl restore", false) end,
+              {description = "restore alsa controls", group = "custom"})
 )
 
 clientkeys = gears.table.join(
