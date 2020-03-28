@@ -11,9 +11,11 @@ local battery_widget = wibox.widget.background()
 battery_widget:set_widget(battery_text)
 
 -- Monitor battery
-watch('fish -c "string sub -s 25 -l 3 (acpi -b)"', 10,
+watch('fish -c "string sub -s 25 -l 2 (acpi -b)"', 10,
       function(widget, stdout, stderr, exitreason, exitcode)
-	      battery_text:set_text(stdout)
+	      local battery = stdout:gsub("%s+", "")
+          local text = string.format(" %s%% ", battery)
+	      battery_text:set_text(text)
 	  end,
 	  battery_widget
 )
