@@ -102,11 +102,8 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Custom battery widget
-battery_widget = require("widgets.ramanujan.battery")
-
 -- Custom temperature widget
-temperature_widget = require("widgets.ramanujan.temperature")
+temperature_widget = require("widgets.eratosthenes.temperature")
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
