@@ -108,6 +108,9 @@ battery_widget = require("widgets.ramanujan.battery")
 -- Custom temperature widget
 temperature_widget = require("widgets.ramanujan.temperature")
 
+-- Custom brightness widget
+brightness_widget = require("widgets.ramanujan.brightness")
+
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
@@ -219,6 +222,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
 			battery_widget,
 			temperature_widget,
+			brightness_widget,
             mykeyboardlayout,
             mytextclock,
             s.mylayoutbox,
