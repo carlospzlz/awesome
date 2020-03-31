@@ -30,7 +30,7 @@ watch('fish -c "cat /sys/class/power_supply/BAT0/status"', 10,
 		  if (status == "Charging") then
 		      battery_widget:set_fg("#00FF00")
 		  else
-		      battery_widget:set_fg("#BBBBBB")
+		      battery_widget:set_fg("#AAAAAA")
 		  end
 	  end,
 	  battery_widget
