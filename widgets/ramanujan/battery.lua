@@ -11,24 +11,23 @@ local battery_widget = wibox.widget.background()
 battery_widget:set_widget(battery_text)
 
 -- Monitor battery capacity
-watch('fish -c "cat /sys/class/power_supply/BAT0/capacity"', 10,
+local command = 'fish -c ' ..
+'"cat /sys/class/power_supply/BAT0/capacity ' ..
+     '/sys/class/power_supply/BAT0/status"'
+watch(command, 10,
       function(_, stdout, stderr, exitreason, exitcode)
-	      local capacity = stdout:gsub("%s+", "")
+	      local lines = {}
+		  for line in stdout:gmatch("[^\n]+") do
+		      table.insert(lines, line)
+		  end
+	      local capacity = lines[1]
+	      local status = lines[2]
           local text = string.format(" %s%% ", capacity)
 	      battery_text:set_text(text)
-		  if (tonumber(capacity) < 10) then
-		      battery_widget:set_fg("#ff0000")
-		  end
-	  end,
-	  battery_widget
-)
-
--- Monitor battery status
-watch('fish -c "cat /sys/class/power_supply/BAT0/status"', 10,
-      function(_, stdout, stderr, exitreason, exitcode)
-	      local status = stdout:gsub("%s+", "")
 		  if (status == "Charging") then
 		      battery_widget:set_fg("#00FF00")
+		  elseif (tonumber(capacity) < 10) then
+		      battery_widget:set_fg("#FF0000")
 		  else
 		      battery_widget:set_fg("#AAAAAA")
 		  end
