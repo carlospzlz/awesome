@@ -28,6 +28,7 @@ watch(command, 10,
 		      battery_widget:set_fg("#00FF00")
 		  elseif (tonumber(capacity) < 10) then
 		      battery_widget:set_fg("#FF0000")
+			  os.execute("beep -f 1000 -l 50 -r 2")
 		  else
 		      battery_widget:set_fg("#AAAAAA")
 		  end
