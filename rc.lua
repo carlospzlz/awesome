@@ -102,14 +102,8 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Custom battery widget
-battery_widget = require("widgets.ramanujan.battery")
-
--- Custom brightness widget
-brightness_widget = require("widgets.ramanujan.brightness")
-
 -- Custom temperature widget
-temperature_widget = require("widgets.ramanujan.temperature")
+temperature_widget = require("widgets.eratosthenes.temperature")
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
@@ -220,8 +214,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-			battery_widget,
-			brightness_widget,
 			temperature_widget,
             mykeyboardlayout,
             mytextclock,
@@ -349,16 +341,16 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "custom"}),
 
-    awful.key({ modkey }, "i",    function() awful.util.spawn("amixer set Master 9%+", false) end,
-              {description = "increase control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "Up",   function() awful.util.spawn("amixer set Master 9%+", false) end,
-              {description = "increase control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "u",    function() awful.util.spawn("amixer set Master 9%-", false) end,
-              {description = "decrease control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "Down", function() awful.util.spawn("amixer set Master 9%-", false) end,
-              {description = "decrease control Master by 9%", group = "custom"}),
-    awful.key({ modkey }, "[", function() awful.util.spawn("amixer set Master toggle", false) end,
-              {description = "mute control Master", group = "custom"}),
+    awful.key({ modkey }, "i",    function() awful.util.spawn("amixer -D hw:Generic set Master 9%+", false) end,
+              {description = "increase hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "Up",   function() awful.util.spawn("amixer -D hw:Generic set Master 9%+", false) end,
+              {description = "increase hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "u",    function() awful.util.spawn("amixer -D hw:Generic set Master 9%-", false) end,
+              {description = "decrease hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "Down", function() awful.util.spawn("amixer -D hw:Generic set Master 9%-", false) end,
+              {description = "decrease hw:Generic control Master by 9%", group = "custom"}),
+    awful.key({ modkey }, "[", function() awful.util.spawn("amixer -D hw:Generic set Master toggle", false) end,
+              {description = "mute hw:Generic control Master", group = "custom"}),
     -- Due to a bug 'toggle' doesn't unmute all the paramters, we need to restore.
     awful.key({ modkey }, "]", function() awful.util.spawn("alsactl restore", false) end,
               {description = "restore alsa controls", group = "custom"})
