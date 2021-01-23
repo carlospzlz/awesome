@@ -106,7 +106,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 battery_widget = require("widgets.ramanujan.battery")
 
 -- Custom brightness widget
-brightness_widget = require("widgets.ramanujan.brightness")
+brightness_widget = require("widgets.lovelace.brightness")
 
 -- Custom temperature widget
 temperature_widget = require("widgets.ramanujan.temperature")
@@ -369,7 +369,13 @@ globalkeys = gears.table.join(
               {description = "mute control Master", group = "custom"}),
     -- Due to a bug 'toggle' doesn't unmute all the paramters, we need to restore.
     awful.key({ modkey }, "]", function() awful.util.spawn("alsactl restore", false) end,
-              {description = "restore alsa controls", group = "custom"})
+              {description = "restore alsa controls", group = "custom"}),
+
+    -- Control Brightness
+    awful.key({ }, "XF86MonBrightnessUp", function() awful.util.spawn("enlighten +10%", false) end,
+              {description = "Increase brightness", group = "custom"}),
+    awful.key({ }, "XF86MonBrightnessDown", function() awful.util.spawn("enlighten -10%", false) end,
+              {description = "Decrease brightness", group = "custom"})
 )
 
 clientkeys = gears.table.join(
