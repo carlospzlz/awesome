@@ -103,7 +103,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Custom battery widget
-battery_widget = require("widgets.ramanujan.battery")
+battery_widget = require("widgets.lovelace.battery")
 
 -- Custom brightness widget
 brightness_widget = require("widgets.lovelace.brightness")
