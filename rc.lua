@@ -103,7 +103,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Custom temperature widget
-temperature_widget = require("widgets.eratosthenes.temperature")
+temperature_widget = require("widgets.carlos-desktop.temperature")
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
